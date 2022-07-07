@@ -1,0 +1,21 @@
+{
+	"name": "apollo-server-graphql-node",
+	"version": "1.0.0",
+	"description": "This GraphQL API with Express.js, MongoDB, and Node.js",
+	"main": "index.js",
+	"scripts": {
+		"start": "node -r esm .",
+		"dev": "nodemon -r esm"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hiren1999/apollo-server-graphql-node.git"
+	},
+	"keywords": [],
+	"author": "Hiren Patel",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/hiren1999/apollo-server-graphql-node/issues"
+	},
+	"homepage": "https://github.com/hiren1999/apollo-server-graphql-node#readme"
+}
