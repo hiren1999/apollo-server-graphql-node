@@ -9,4 +9,5 @@ export const {
 	DB = 'mongodb://localhost:27017/graphql-apollo-server',
 	BASE_URL,
 	URL = `${BASE_URL}:${PORT}`,
+	JWT_SECRET,
 } = parsed;
