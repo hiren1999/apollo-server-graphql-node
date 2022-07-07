@@ -10,4 +10,5 @@ export default gql`
 	type Subscription {
 		_: String
 	}
+	scalar Upload
 `;

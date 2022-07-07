@@ -1,12 +1,14 @@
 import express from 'express';
 import { success, error } from 'consola';
-import { PORT, IN_PROD, DB } from './config';
+import { PORT, IN_PROD, DB, URL } from './config';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from './graphql';
 import mongoose from 'mongoose';
 import * as AppModels from './models';
+import { join } from 'path';
 
 const app = express();
+// app.use(express.static(join(__dirname, './assets')));
 
 const server = new ApolloServer({
 	typeDefs,
