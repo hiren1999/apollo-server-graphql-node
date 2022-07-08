@@ -1,0 +1,36 @@
+query AUTHENTICATE_USER($userName: String!, $password: String!) {
+	authenticateUser(userName: $userName, password: $password) {
+		user {
+			id
+			userName
+			firstName
+			lastName
+			email
+			avatarImage
+		}
+		token
+	}
+}
+
+mutation REGISTER_NEW_USER {
+	registerUser(
+		newUser: {
+			userName: "parth123"
+			firstName: "Parth"
+			lastName: "Patel"
+			email: "parth@thinktanker.in"
+			password: "parth123"
+			avatarImage: "https://i.pravatar.cc/111"
+		}
+	) {
+		token
+		user {
+			id
+			userName
+			email
+			firstName
+			lastName
+			avatarImage
+		}
+	}
+}

@@ -1,10 +1,31 @@
-import { hash } from 'bcryptjs';
-import { response } from 'express';
+import { compare, hash } from 'bcryptjs';
 import { issueToken, serializeUser } from '../../functions';
 
 export default {
 	Query: {
-		infoUserResolvers: () => 'This is the infoUserResolvers',
+		authenticateUser: async (_, { userName, password }, { User }) => {
+			try {
+				// Find user by username
+				let user = await User.findOne({ userName });
+				if (!user) {
+					throw new Error('User not found');
+				}
+				// Check for the password
+				let isMatch = await compare(password, user.password);
+				if (!isMatch) {
+					throw new Error('Invalid Credentials');
+				}
+				// Serialize user
+				user = user.toObject();
+				user.id = user._id;
+				user = serializeUser(user);
+				// Issue auth token
+				let token = await issueToken(user);
+				return { token, user };
+			} catch (error) {
+				throw new ApolloError(error.message, 401);
+			}
+		},
 	},
 	Mutation: {
 		registerUser: async (_, { newUser }, { User }) => {
