@@ -5,9 +5,9 @@ const { parsed } = config();
 export const {
 	PORT,
 	MODE,
-	IN_PROD = MODE !== 'prod',
-	DB = 'mongodb://localhost:27017/graphql-apollo-server',
+	JWT_SECRET,
 	BASE_URL,
 	URL = `${BASE_URL}:${PORT}`,
-	JWT_SECRET,
+	IN_PROD = MODE !== 'prod',
+	DB = 'mongodb://localhost:27017/graphql-apollo-server',
 } = parsed;

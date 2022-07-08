@@ -1,5 +1,6 @@
 import { hash } from 'bcryptjs';
-import { issueToken } from '../../functions';
+import { response } from 'express';
+import { issueToken, serializeUser } from '../../functions';
 
 export default {
 	Query: {

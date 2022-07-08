@@ -10,24 +10,25 @@ export default gql`
 	}
 
 	input UserInput {
+		userName: String!
 		firstName: String!
 		lastName: String!
-		userName: String!
 		email: String!
 		password: String!
 		avatarImage: String
 	}
 
 	type User {
+		id: ID!
+		userName: String!
 		firstName: String!
 		lastName: String!
-		userName: String!
 		email: String!
 		avatarImage: String
 	}
 
 	type AuthResp {
-		user: User!
 		token: String!
+		user: User!
 	}
 `;
