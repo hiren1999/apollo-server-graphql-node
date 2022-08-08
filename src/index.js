@@ -1,25 +1,25 @@
-import express from 'express';
-import { success, error } from 'consola';
-import { PORT, IN_PROD, DB, URL } from './config';
-import { ApolloServer } from 'apollo-server-express';
-import { typeDefs, resolvers } from './graphql';
-import mongoose from 'mongoose';
-import * as AppModels from './models';
-import { join } from 'path';
-import AuthMiddleware from './middlewares/auth';
-import { schemaDirectives } from './graphql/directives';
+import express from "express";
+import { success, error } from "consola";
+import { PORT, IN_PROD, DB, URL } from "./config";
+import { ApolloServer } from "apollo-server-express";
+import { typeDefs, resolvers } from "./graphql";
+import mongoose from "mongoose";
+import * as AppModels from "./models";
+import { join } from "path";
+import AuthMiddleware from "./middlewares/auth";
+// import { schemaDirectives } from "./graphql/directives";
 
 const app = express();
 app.use(AuthMiddleware);
-app.use(express.static(join(__dirname, './assets')));
+app.use(express.static(join(__dirname, "./assets")));
 
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
-	schemaDirectives,
+	// schemaDirectives,
 	playground: IN_PROD,
 	context: ({ req }) => {
-		const { isAuth, user } = req;
+		const { isAuth, user, headers } = req;
 		return {
 			req,
 			isAuth,
@@ -37,7 +37,7 @@ const startApp = async () => {
 				useUnifiedTopology: true,
 			})
 			.then(() =>
-				success({ message: 'Connected to MongoDB', badge: true })
+				success({ message: "Connected to MongoDB", badge: true })
 			)
 			.catch((err) => error({ message: err }));
 

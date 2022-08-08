@@ -1,16 +1,16 @@
-import { verify } from 'jsonwebtoken';
-import { JWT_SECRET } from '../config/index';
-import { User } from '../models';
+import { verify } from "jsonwebtoken";
+import { JWT_SECRET } from "../config/index";
+import { User } from "../models";
 
 const AuthMiddleware = async (req, res, next) => {
-	const authHeaders = req.get('Authorization');
+	const authHeaders = req.get("Authorization");
 	if (!authHeaders) {
 		req.isAuth = false;
 		return next();
 	}
 	// Bearer token
-	let token = authHeaders.split(' ')[1];
-	if (!token || token === '') {
+	let token = authHeaders.split(" ")[1];
+	if (!token || token === "") {
 		req.isAuth = false;
 		return next();
 	}

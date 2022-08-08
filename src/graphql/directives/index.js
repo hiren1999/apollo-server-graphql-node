@@ -1,5 +1,5 @@
-import { IsAuthDirective } from './auth.directive';
+// import { IsAuthDirective } from './auth.directive';
 
-export const schemaDirectives = {
-	isAuth: IsAuthDirective,
-};
+// export const schemaDirectives = {
+// 	isAuth: IsAuthDirective,
+// };
