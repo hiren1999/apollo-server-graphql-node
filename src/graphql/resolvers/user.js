@@ -17,12 +17,12 @@ export default {
 				// Find user by username
 				let user = await User.findOne({ userName });
 				if (!user) {
-					throw new ApolloError("User not found");
+					throw new ApolloError("User not found", 422);
 				}
 				// Check for the password
 				let isMatch = await compare(password, user.password);
 				if (!isMatch) {
-					throw new ApolloError("Invalid Credentials");
+					throw new ApolloError("Invalid Credentials", 422);
 				}
 				// Serialize user
 				user = user.toObject();
@@ -32,7 +32,6 @@ export default {
 				let token = await issueToken(user);
 				return { token, user };
 			} catch (error) {
-				console.log("catch called ", error);
 				throw new ApolloError(error.message, 401);
 			}
 		},
@@ -51,12 +50,12 @@ export default {
 				// Check if userName exists
 				user = await User.findOne({ userName });
 				if (user) {
-					throw new ApolloError("Username is already taken");
+					throw new ApolloError("Username is already taken", 422);
 				}
 				// Check if email exists
 				user = await User.findOne({ email });
 				if (user) {
-					throw new ApolloError("Email is already registered");
+					throw new ApolloError("Email is already registered", 422);
 				}
 				// Create new user Instance
 				user = new User(newUser);
