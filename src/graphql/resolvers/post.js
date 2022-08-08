@@ -1,11 +1,15 @@
-import { ApolloError, UserInputError } from "apollo-server-express";
+import {
+	ApolloError,
+	UserInputError,
+	AuthenticationError,
+} from "apollo-server-express";
 
 export default {
 	Query: {
 		getAllPosts: async (_, {}, { Post, isAuth }) => {
 			// PARAMETERS(parent, args, context, info)
 			if (!isAuth) {
-				throw new ApolloError("Not Authorization User", 401);
+				throw new AuthenticationError("Not Authorization User");
 			}
 			const posts = await Post.find();
 			return posts;
